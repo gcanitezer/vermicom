@@ -8,3 +8,5 @@ Hardware of vermicom
 
 [link | https://create.arduino.cc/projecthub/nekhbet/using-the-yl-39-yl-69-soil-humidity-sensor-with-arduino-968268]
 
+# How to connect and use DHT11 
+[link](https://playground.arduino.cc/Main/DHT11Lib)
