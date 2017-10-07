@@ -16,7 +16,7 @@ http://www.instructables.com/id/ESP32-With-Integrated-OLED-WEMOSLolin-Getting-St
 
 // Include the correct display library
 // For a connection via I2C using Wire include
-#include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
+//#include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
 #include "SSD1306.h" // alias for `#include "SSD1306Wire.h"`
 // or #include "SH1106.h" alis for `#include "SH1106Wire.h"`
 // For a connection via I2C using brzo_i2c (must be installed) include
@@ -56,7 +56,7 @@ SSD1306  display(0x3c, 5, 4);
 #define DEMO_DURATION 3000
 typedef void (*Demo)(void);
 
-int demoMode = 0;
+int demoMode = 1;
 int counter = 1;
 
 
