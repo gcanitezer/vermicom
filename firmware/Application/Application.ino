@@ -19,7 +19,7 @@ http://www.instructables.com/id/ESP32-With-Integrated-OLED-WEMOSLolin-Getting-St
 
 // Include the correct display library
 // For a connection via I2C using Wire include
-#include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
+//#include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
 #include "SSD1306.h" // alias for `#include "SSD1306Wire.h"`
 // or #include "SH1106.h" alis for `#include "SH1106Wire.h"`
 
@@ -45,13 +45,15 @@ http://www.instructables.com/id/ESP32-With-Integrated-OLED-WEMOSLolin-Getting-St
 
 #define DISPLAY_SDA 5 
 #define DISPLAY_SCL 4
+
 #define RELAY_HEATER  0
 #define RELAY_PUMP  2
 #define RELAY_3  14
 #define RELAY_4  12
-#define TEMPRATURE 13
-#define SOIL_HUMIDITY 15
-#define AIR_TEMP_HUM X
+
+#define TEMPRATURE_SENSOR 13
+#define SOIL_HUMIDITY_SENSOR 26
+#define AIR_TEMP_HUM_SENSOR 25
 
 //pin up for giving energy to humidity reader to minimize electrolize
 #define SOIL_HUMIDITY_OPEN 16
@@ -70,12 +72,6 @@ int demoMode = 0;
 int counter = 1;
  
 
-
-
-const int nem_sensoru = 26;  // Analog input pin , ours is connected to YL-83
-const int sicaklik_sensoru = 13;  // Analog input pin , ours is connected to YL-83
-
-
 void setup() {
   Serial.begin(115200);
   Serial.println();
@@ -83,13 +79,13 @@ void setup() {
 
   //int a = GPIO12;
   
-  pinMode(RELAY_HEATER, OUTPUT);
-  pinMode(RELAY_PUMP, OUTPUT);
-  pinMode(RELAY_3, OUTPUT);
-  pinMode(RELAY_4, OUTPUT);
+ pinMode(RELAY_HEATER, OUTPUT);
+ pinMode(RELAY_PUMP, OUTPUT);
+ pinMode(RELAY_3, OUTPUT);
+ pinMode(RELAY_4, OUTPUT);
 
-pinMode(SOIL_HUMIDITY,INPUT);
-pinMode(sicaklik_sensoru,INPUT);
+  pinMode(SOIL_HUMIDITY_SENSOR,INPUT);
+  pinMode(TEMPRATURE_SENSOR,INPUT);
 
   // Initialising the UI will init the display too.
   display.init();
@@ -206,15 +202,16 @@ void loop() {
   display.clear();
   
   // read the analog in value:
-  int nem_value = analogRead(nem_sensoru);
+  int nem_value = analogRead(SOIL_HUMIDITY_SENSOR);
   Serial.print("nem_sensoru giris=");Serial.println(nem_value);
   display.drawString(0, 10, "nem_sensoru giris="+String(nem_value));
   //Serial.print("nem_sensoru map=");Serial.println(  map(nem_value, 1200, 4096, 0, 100) ) ;
   Serial.println("");
-  int sicaklik_value = analogRead(sicaklik_sensoru);
+  int sicaklik_value = analogRead(TEMPRATURE_SENSOR);
   Serial.print("sicaklik_sensoru giris=");Serial.println(sicaklik_value);
   //Serial.print("sicaklik_sensoru map=");Serial.println( map(sicaklik_value, 1200, 4096, 0, 100) ) ;
-  Serial.println("");
+ 
+ Serial.println("hello");
   // wait 1 seconds before the next loop to minimise corrosion on the rain detector.
 
   display.display();

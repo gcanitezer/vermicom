@@ -196,7 +196,7 @@ void loop() {
   display.drawString(10, 128, String(millis()));
   // write the buffer to the display
   display.display();
-
+Serial.println("Hello");
   if (millis() - timeSinceLastModeSwitch > DEMO_DURATION) {
     demoMode = (demoMode + 1)  % demoLength;
     timeSinceLastModeSwitch = millis();
