@@ -1,5 +1,3 @@
-Source codes for vermicom.
-
 # Requirements for the application
 
 ## Sensor requirements
@@ -41,4 +39,22 @@ Source codes for vermicom.
 * Decrease of temprature in water tank shall trigger water heater for 10 secs.
 * Increase of temprature in water tank shall trigger water cooler for 10 secs.
 * Decrease of soil humidity shall trigger humidifier for 10 secs.
+
+## Relay functionality
+
+* Following relays shall be available
+  * Water pump
+  * Water heater
+  * Water cooler
+  * Humidifier
+* All relays shall be off on start and without power states. (Also Hardware requirement)
+
+
+## IOT Requirements
+
+* System ID (Box Name) shall be changeable.
+* Selected Sensor data shall be shown with line graph.
+* All sensor data and relay states shall be shown with line graph. Line graph shall have legend.
+* Following rest API shall be provided
+  * GET /sensors/data (returns json)
 
